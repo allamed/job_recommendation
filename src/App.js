@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import JobOffers  from "./pages/JobOffers";
+import RecommendedJobOffers from "./pages/RecommendedJobOffers";
+import UserDashboard from "./pages/UserDashboard";
+import SignUpForm from "./pages/SignUpForm";
+import {useState} from "react";
+import SignInForm from "./pages/SignInForm";
 
 function App() {
+    const [userName, setUserName] = useState('');
+    const [signedIn, setSignedIn] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          {
+              signedIn ? <SignInForm setUserName={setUserName} setSignedIn={setSignedIn}/> : <SignUpForm setUserName={setUserName} setSignedIn={setSignedIn}/>
+          }
+
+     <UserDashboard userName={userName} setSignedIn={setSignedIn}/>
+      </>
   );
 }
 
