@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import JobOffers  from "./pages/JobOffers";
-import RecommendedJobOffers from "./pages/RecommendedJobOffers";
-import UserDashboard from "./pages/UserDashboard";
-import SignUpForm from "./pages/SignUpForm";
+
+import Employee from "./Employee";
 import {useState} from "react";
-import SignInForm from "./pages/SignInForm";
+import Employer from "./pages/Employer";
 
 function App() {
-    const [userName, setUserName] = useState('');
-    const [signedIn, setSignedIn] = useState(false);
+    const [employee, setEmployee] = useState(true)
+
   return (
       <>
+          <button className={"btn btn-primary"}
+          onClick={() => setEmployee(!employee)}
+          >{employee? "switch to employer" : "switch to employee"}</button>
           {
-              signedIn ? <SignInForm setUserName={setUserName} setSignedIn={setSignedIn}/> : <SignUpForm setUserName={setUserName} setSignedIn={setSignedIn}/>
+                employee ? <Employee/> : <Employer/>
           }
-
-     <UserDashboard userName={userName} setSignedIn={setSignedIn}/>
-      </>
+        </>
   );
 }
 

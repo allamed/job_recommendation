@@ -68,8 +68,8 @@ const RecommendedJobOffers = ({ utilisateurId , userName}) => {
         fetchRecommendedJobOffers();
     }, [userName]);
 
-    return (
-        <div>
+    if (userName ) return (
+         <div>
             <h2 style={{
                 fontSize: "24px",
                 fontWeight: "bold",
@@ -79,10 +79,11 @@ const RecommendedJobOffers = ({ utilisateurId , userName}) => {
                 fontFamily:"'Open Sans', Arial, sans-serif"
             }}>Offres d'emploi recommandées pour  {userName}</h2>
             <ul>
-               <Offers offers={recommandations} />
+                 <Offers offers={recommandations}/>
             </ul>
         </div>
-    );
+        );
+
 };
 
 export default RecommendedJobOffers;

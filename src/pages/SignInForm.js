@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { runCypherQuery } from './Neo4jConnector';
+import {Alert} from "@mui/material";
+import { toast } from "react-toastify";
 
 const SignInForm = ({setSignedIn, setUserName}) => {
     const [email, setEmail] = useState('');
@@ -17,11 +19,12 @@ const SignInForm = ({setSignedIn, setUserName}) => {
 
         if (result.length > 0) {
             const utilisateur = result[0].nom;
-            console.log(utilisateur);
+            console.log("signed in user :",utilisateur);
             setUserName(utilisateur);
             // Faites quelque chose avec l'ID de l'utilisateur connecté, comme le stocker dans le state ou le rediriger vers une page appropriée
         } else {
-            // Affichez un message d'erreur ou effectuez une action appropriée en cas d'informations de connexion incorrectes
+            toast.error("Email ou mot de passe incorrect");
+
         }
     };
 
@@ -43,9 +46,9 @@ const SignInForm = ({setSignedIn, setUserName}) => {
                     <input className="form__input" type="password" value={motDePasse} onChange={(e) => setMotDePasse(e.target.value)} />
                 </label>
                 <br />
-                <button className={"btn" }  type="submit" >Se connecter</button>
+                <button className={"btn" }  type="submit" >Trouver des offres d'emploi</button>
                 <button className={"btn" }  type="button" onClick={handleSwitchToSignUp}>
-                    Nouvel utilisateur
+                    c'est votre premiere fois?
                 </button>
             </form>
         </div>
